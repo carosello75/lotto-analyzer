@@ -5,74 +5,355 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎲 Generatore - Lotto Analyzer</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="/">🎲 Lotto Analyzer</a>
-            <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="/">Home</a>
-                <a class="nav-link" href="/dashboard">Dashboard</a>
-                <a class="nav-link active" href="/generator">Generatore</a>
-                <a class="nav-link" href="/stats">Statistiche</a>
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-dice"></i> Lotto Analyzer
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link" href="/">Home</a>
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                    <a class="nav-link active" href="/generator">Generatore</a>
+                    <a class="nav-link" href="/stats">Statistiche</a>
+                </div>
             </div>
         </div>
     </nav>
-    <div class="container py-5">
-        <h1 class="text-center">🎲 Generatore Funzionante!</h1>
-        <div class="alert alert-success">
-            <h4>✅ Pagina Ripristinata!</h4>
-            <p>Il generatore è stato ripristinato con supporto TUTTE LE RUOTE!</p>
+
+    <!-- Page Header -->
+    <div class="bg-gradient-success py-5">
+        <div class="container text-center">
+            <h1 class="display-4 text-white mb-3 fade-in sparkle">
+                <i class="fas fa-magic"></i> Generatore Combinazioni Magiche
+            </h1>
+            <p class="lead text-light">Crea combinazioni intelligenti per tutte le tipologie di gioco con supporto TUTTE LE RUOTE</p>
         </div>
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Tipo Giocata</label>
-                        <select id="tipo" class="form-select">
-                            <option value="ambo">Ambo (2 numeri)</option>
-                            <option value="terno">Terno (3 numeri)</option>
-                            <option value="quaterna">Quaterna (4 numeri)</option>
-                            <option value="cinquina">Cinquina (5 numeri)</option>
-                        </select>
+    </div>
+
+    <div class="container py-5">
+        <!-- Generator Form -->
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card shadow-lg border-0">
+                    <div class="card-header bg-gradient-success text-white text-center py-4">
+                        <h4 class="mb-0">
+                            <i class="fas fa-cogs"></i> Configurazione Generazione Avanzata
+                        </h4>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Ruota</label>
-                        <select id="ruota" class="form-select">
-                            <option value="tutte">🌍 TUTTE LE RUOTE (Migliori Probabilità)</option>
-                            <option value="nazionale">🇮🇹 Nazionale</option>
-                            <option value="bari">🏛️ Bari</option>
-                            <option value="milano">🏙️ Milano</option>
-                            <option value="roma">🏛️ Roma</option>
-                            <option value="napoli">🍕 Napoli</option>
-                        </select>
+                    <div class="card-body page-container p-5">
+                        <form id="generator-form">
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <label class="form-label fw-bold">
+                                        <i class="fas fa-list-ol text-primary"></i> Tipo di Giocata
+                                    </label>
+                                    <select id="tipo-giocata-gen" class="form-select form-select-lg">
+                                        <option value="ambo">Ambo (2 numeri) - 1 su 4.005</option>
+                                        <option value="terno" selected>Terno (3 numeri) - 1 su 117.480</option>
+                                        <option value="quaterna">Quaterna (4 numeri) - 1 su 2.704.156</option>
+                                        <option value="cinquina">Cinquina (5 numeri) - 1 su 43.949.268</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <label class="form-label fw-bold">
+                                        <i class="fas fa-globe text-success"></i> Ruota di Gioco
+                                    </label>
+                                    <select id="ruota-gioco" class="form-select form-select-lg">
+                                        <option value="tutte">🌍 TUTTE LE RUOTE (Probabilità 10x migliori!)</option>
+                                        <option value="nazionale">🇮🇹 Nazionale</option>
+                                        <option value="bari">🏛️ Bari</option>
+                                        <option value="cagliari">🏖️ Cagliari</option>
+                                        <option value="firenze">🎨 Firenze</option>
+                                        <option value="genova">⚓ Genova</option>
+                                        <option value="milano">🏙️ Milano</option>
+                                        <option value="napoli">🍕 Napoli</option>
+                                        <option value="palermo">🌴 Palermo</option>
+                                        <option value="roma">🏛️ Roma</option>
+                                        <option value="torino">⛰️ Torino</option>
+                                        <option value="venezia">🚤 Venezia</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <label class="form-label fw-bold">
+                                        <i class="fas fa-brain text-warning"></i> Strategia Generazione
+                                    </label>
+                                    <select id="strategia" class="form-select">
+                                        <option value="casuale">🎲 Completamente Casuale</option>
+                                        <option value="frequenze" selected>📈 Basata su Frequenze</option>
+                                        <option value="ritardi">⏰ Basata su Ritardi</option>
+                                        <option value="mista">🔀 Strategia Mista</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <label class="form-label fw-bold">
+                                        <i class="fas fa-layer-group text-info"></i> Numero Combinazioni
+                                    </label>
+                                    <select id="num-combinazioni" class="form-select">
+                                        <option value="1">1 Combinazione</option>
+                                        <option value="3" selected>3 Combinazioni</option>
+                                        <option value="5">5 Combinazioni</option>
+                                        <option value="10">10 Combinazioni</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="button" id="genera-combinazioni" class="btn btn-success btn-lg px-5 py-3">
+                                    <i class="fas fa-magic"></i> Genera Combinazioni Magiche
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="text-center">
-                    <button id="genera" class="btn btn-success btn-lg">🎲 Genera Combinazione</button>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div id="risultati-container" style="display: none;">
+                    <h3 class="text-center mb-4 fade-in">
+                        <i class="fas fa-star text-warning"></i> Combinazioni Generate
+                    </h3>
+                    <div id="combinazioni-results" class="row">
+                        <!-- Dynamic content -->
+                    </div>
                 </div>
-                <div id="risultato" class="mt-4"></div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card bg-light shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-bolt text-primary"></i> Azioni Rapide
+                        </h5>
+                        <div class="d-flex flex-wrap gap-3">
+                            <button class="btn btn-outline-primary" onclick="generateQuick('ambo', 'tutte')">
+                                <i class="fas fa-dice-two"></i> Ambo TUTTE LE RUOTE
+                            </button>
+                            <button class="btn btn-outline-success" onclick="generateQuick('terno', 'milano')">
+                                <i class="fas fa-dice-three"></i> Terno Milano
+                            </button>
+                            <button class="btn btn-outline-warning" onclick="generateQuick('quaterna', 'roma')">
+                                <i class="fas fa-dice-four"></i> Quaterna Roma
+                            </button>
+                            <button class="btn btn-outline-danger" onclick="generateQuick('cinquina', 'tutte')">
+                                <i class="fas fa-dice-five"></i> Cinquina TUTTE LE RUOTE
+                            </button>
+                            <button class="btn btn-outline-info" onclick="generateLucky()">
+                                <i class="fas fa-clover"></i> 🍀 Numeri Fortunati
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Info -->
+        <div class="row mt-5">
+            <div class="col-md-4 mb-4">
+                <div class="stat-card" style="background: linear-gradient(135deg, #007bff, #0056b3);">
+                    <i class="fas fa-percentage fa-3x mb-3"></i>
+                    <span class="stat-number">1:400</span>
+                    <span class="stat-label">Probabilità Ambo (Tutte le Ruote)</span>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="stat-card" style="background: linear-gradient(135deg, #28a745, #1e7e34);">
+                    <i class="fas fa-trophy fa-3x mb-3"></i>
+                    <span class="stat-number">1:11K</span>
+                    <span class="stat-label">Probabilità Terno (Tutte le Ruote)</span>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="stat-card" style="background: linear-gradient(135deg, #ffc107, #e0a800);">
+                    <i class="fas fa-crown fa-3x mb-3"></i>
+                    <span class="stat-number">1:4.4M</span>
+                    <span class="stat-label">Probabilità Cinquina (Tutte le Ruote)</span>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.getElementById('genera').onclick = function() {
-            const tipo = document.getElementById('tipo').value;
-            const ruota = document.getElementById('ruota').value;
-            fetch(`/api/genera/numeri?tipo=${tipo}&ruota=${ruota}`)
-                .then(r => r.json())
-                .then(data => {
-                    document.getElementById('risultato').innerHTML = `
-                        <div class="alert alert-success">
-                            <h5>✨ Combinazione Generata!</h5>
-                            <div class="text-center my-3">
-                                ${data.numeri.map(n => `<span class="badge bg-primary fs-5 me-2">${n}</span>`).join('')}
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            document.getElementById('genera-combinazioni').addEventListener('click', generaCombinazioni);
+        }
+
+        async function generaCombinazioni() {
+            const btn = document.getElementById('genera-combinazioni');
+            const tipo = document.getElementById('tipo-giocata-gen').value;
+            const ruota = document.getElementById('ruota-gioco').value;
+            const strategia = document.getElementById('strategia').value;
+            const numCombinazioni = parseInt(document.getElementById('num-combinazioni').value);
+            const resultsContainer = document.getElementById('risultati-container');
+            const combinazioniResults = document.getElementById('combinazioni-results');
+
+            // Loading state
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading"></span> Generando magia...';
+            
+            try {
+                const combinazioni = [];
+                
+                for (let i = 0; i < numCombinazioni; i++) {
+                    const response = await fetch(`/api/genera/numeri?tipo=${tipo}&ruota=${ruota}&strategia=${strategia}`);
+                    const data = await response.json();
+                    combinazioni.push({ ...data, id: i + 1 });
+                    
+                    await new Promise(resolve => setTimeout(resolve, 300));
+                }
+
+                displayCombinations(combinazioni, combinazioniResults);
+                resultsContainer.style.display = 'block';
+                resultsContainer.scrollIntoView({ behavior: 'smooth' });
+
+            } catch (error) {
+                console.error('Errore generazione:', error);
+                showError('Errore nella generazione delle combinazioni');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-magic"></i> Genera Combinazioni Magiche';
+            }
+        }
+
+        function displayCombinations(combinazioni, container) {
+            let html = '';
+
+            combinazioni.forEach((combinazione, index) => {
+                const cardColors = ['primary', 'success', 'warning', 'info', 'secondary'];
+                const cardColor = cardColors[index % cardColors.length];
+                const isAllWheels = combinazione.ruota === 'tutte';
+                
+                html += `
+                    <div class="col-lg-4 col-md-6 mb-4 fade-in" style="animation-delay: ${index * 0.2}s">
+                        <div class="card shadow border-${cardColor}">
+                            <div class="card-header bg-gradient-${cardColor} text-white text-center">
+                                <h6 class="mb-0">
+                                    <i class="fas fa-star"></i> Combinazione ${combinazione.id}
+                                    ${isAllWheels ? '<span class="badge bg-light text-dark ms-2">TUTTE LE RUOTE</span>' : ''}
+                                </h6>
                             </div>
-                            <p><strong>Tipo:</strong> ${data.tipo} | <strong>Ruota:</strong> ${data.ruota} | <strong>Probabilità:</strong> ${data.probabilita}</p>
+                            <div class="card-body text-center page-container">
+                                <div class="mb-4">
+                                    ${combinazione.numeri.map((num, idx) => 
+                                        `<span class="numero-lotto ${getNumeroClass(idx)} me-1">${num}</span>`
+                                    ).join('')}
+                                </div>
+                                <div class="row text-center mb-3">
+                                    <div class="col-6">
+                                        <small class="text-muted">Tipo</small><br>
+                                        <strong class="text-${cardColor}">${combinazione.tipo.toUpperCase()}</strong>
+                                    </div>
+                                    <div class="col-6">
+                                        <small class="text-muted">Ruota</small><br>
+                                        <strong class="text-${cardColor}">${isAllWheels ? 'TUTTE' : combinazione.ruota.toUpperCase()}</strong>
+                                    </div>
+                                </div>
+                                <div class="alert alert-${cardColor} p-2">
+                                    <small class="text-white">
+                                        <i class="fas fa-chart-line"></i> 
+                                        <strong>Probabilità: ${combinazione.probabilita}</strong>
+                                    </small>
+                                </div>
+                                <div class="d-flex justify-content-center gap-2">
+                                    <button class="btn btn-outline-${cardColor} btn-sm" onclick="copyToClipboard('${combinazione.numeri.join('-')}')">
+                                        <i class="fas fa-copy"></i> Copia
+                                    </button>
+                                    <button class="btn btn-outline-${cardColor} btn-sm" onclick="favoriteCombination(${combinazione.id})">
+                                        <i class="fas fa-heart"></i> ❤️
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-footer text-center bg-light">
+                                <small class="text-muted">
+                                    <i class="fas fa-clock"></i> ${combinazione.generato}
+                                </small>
+                            </div>
                         </div>
-                    `;
-                });
-        };
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function getNumeroClass(index) {
+            switch(index) {
+                case 0: return 'gold';
+                case 1: return 'silver';
+                case 2: return 'bronze';
+                default: return '';
+            }
+        }
+
+        function generateQuick(tipo, ruota) {
+            document.getElementById('tipo-giocata-gen').value = tipo;
+            document.getElementById('ruota-gioco').value = ruota;
+            document.getElementById('num-combinazioni').value = '1';
+            generaCombinazioni();
+        }
+
+        function generateLucky() {
+            document.getElementById('tipo-giocata-gen').value = 'cinquina';
+            document.getElementById('ruota-gioco').value = 'tutte';
+            document.getElementById('strategia').value = 'mista';
+            document.getElementById('num-combinazioni').value = '3';
+            generaCombinazioni();
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Numeri copiati: ' + text, 'success');
+            });
+        }
+
+        function favoriteCombination(id) {
+            showToast(`❤️ Combinazione ${id} aggiunta ai preferiti!`, 'info');
+        }
+
+        function showError(message) {
+            showToast(message, 'danger');
+        }
+
+        function showToast(message, type) {
+            const toast = document.createElement('div');
+            toast.className = `alert alert-${type} position-fixed top-0 end-0 m-3 fade-in`;
+            toast.style.zIndex = '9999';
+            toast.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" onclick="this.parentElement.remove()"></button>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.remove();
+                }
+            }, 3000);
+        }
     </script>
 </body>
 </html>
