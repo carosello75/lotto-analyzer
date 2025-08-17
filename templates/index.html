@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎲 Lotto Analyzer - Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-dice"></i> Lotto Analyzer
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/dashboard">Dashboard</a>
+                <a class="nav-link" href="/generator">Generatore</a>
+                <a class="nav-link" href="/stats">Statistiche</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold text-white mb-4">
+                        🎲 Analisi Lotto Avanzata
+                    </h1>
+                    <p class="lead text-light mb-4">
+                        Sistema completo per analisi statistiche, generazione combinazioni e monitoraggio estrazioni del Lotto Italiano.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="/generator" class="btn btn-warning btn-lg">
+                            <i class="fas fa-magic"></i> Genera Numeri
+                        </a>
+                        <a href="/dashboard" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-chart-line"></i> Statistiche
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card bg-white shadow-lg">
+                        <div class="card-header bg-success text-white text-center">
+                            <h5><i class="fas fa-trophy"></i> Ultima Estrazione</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="ultima-estrazione" class="text-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Caricamento...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Cards -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fas fa-chart-bar fa-3x text-primary mb-3"></i>
+                            <h5>Statistiche Avanzate</h5>
+                            <p class="text-muted">Analisi frequenze, ritardi e tendenze per tutte le ruote del lotto.</p>
+                            <a href="/stats" class="btn btn-outline-primary">Visualizza</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fas fa-random fa-3x text-success mb-3"></i>
+                            <h5>Generatore Intelligente</h5>
+                            <p class="text-muted">Crea combinazioni per ambi, terni, quaterne e cinquine.</p>
+                            <a href="/generator" class="btn btn-outline-success">Genera</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fas fa-history fa-3x text-warning mb-3"></i>
+                            <h5>Storico Estrazioni</h5>
+                            <p class="text-muted">Database completo con tutte le estrazioni storiche.</p>
+                            <a href="/dashboard" class="btn btn-outline-warning">Esplora</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Generator -->
+    <section class="bg-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card shadow">
+                        <div class="card-header bg-primary text-white text-center">
+                            <h4><i class="fas fa-dice-five"></i> Generatore Rapido</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Tipo Giocata</label>
+                                    <select id="tipo-giocata" class="form-select">
+                                        <option value="ambo">Ambo (2 numeri)</option>
+                                        <option value="terno">Terno (3 numeri)</option>
+                                        <option value="quaterna">Quaterna (4 numeri)</option>
+                                        <option value="cinquina">Cinquina (5 numeri)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Ruota</label>
+                                    <select id="ruota-scelta" class="form-select">
+                                        <option value="nazionale">Nazionale</option>
+                                        <option value="bari">Bari</option>
+                                        <option value="cagliari">Cagliari</option>
+                                        <option value="firenze">Firenze</option>
+                                        <option value="genova">Genova</option>
+                                        <option value="milano">Milano</option>
+                                        <option value="napoli">Napoli</option>
+                                        <option value="palermo">Palermo</option>
+                                        <option value="roma">Roma</option>
+                                        <option value="torino">Torino</option>
+                                        <option value="venezia">Venezia</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button id="genera-numeri" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-magic"></i> Genera Combinazione
+                                </button>
+                            </div>
+                            <div id="risultato-generatore" class="mt-4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4">
+        <div class="container text-center">
+            <p>&copy; 2025 Lotto Analyzer. Sistema di analisi statistica del Lotto Italiano.</p>
+            <p class="mb-0">
+                <small class="text-muted">
+                    ⚠️ Il gioco del lotto è basato sulla casualità. Questo sistema è puramente educativo e statistico.
+                </small>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
