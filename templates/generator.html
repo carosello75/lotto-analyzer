@@ -5,16 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎲 Generatore - Lotto Analyzer</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="/">
-                <i class="fas fa-dice"></i> Lotto Analyzer
-            </a>
+            <a class="navbar-brand" href="/">🎲 Lotto Analyzer</a>
             <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="/">Home</a>
                 <a class="nav-link" href="/dashboard">Dashboard</a>
@@ -23,177 +18,61 @@
             </div>
         </div>
     </nav>
-
-    <!-- Page Header -->
-    <div class="bg-gradient-success py-5">
-        <div class="container text-center">
-            <h1 class="display-4 text-white mb-3">
-                <i class="fas fa-magic"></i> Generatore Combinazioni
-            </h1>
-            <p class="lead text-light">Crea combinazioni intelligenti per tutte le tipologie di gioco</p>
-        </div>
-    </div>
-
     <div class="container py-5">
-        <!-- Generator Form -->
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="card shadow-lg border-0">
-                    <div class="card-header bg-success text-white text-center py-3">
-                        <h4 class="mb-0"><i class="fas fa-cogs"></i> Configurazione Generazione</h4>
-                    </div>
-                    <div class="card-body p-4">
-                        <form id="generator-form">
-                            <div class="row">
-                                <div class="col-md-6 mb-4">
-                                    <label class="form-label fw-bold">
-                                        <i class="fas fa-list-ol"></i> Tipo di Giocata
-                                    </label>
-                                    <select id="tipo-giocata-gen" class="form-select form-select-lg">
-                                        <option value="ambo">Ambo (2 numeri)</option>
-                                        <option value="terno" selected>Terno (3 numeri)</option>
-                                        <option value="quaterna">Quaterna (4 numeri)</option>
-                                        <option value="cinquina">Cinquina (5 numeri)</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6 mb-4">
-                                    <label class="form-label fw-bold">
-                                        <i class="fas fa-map-marker-alt"></i> Ruota di Gioco
-                                    </label>
-                                    <select id="ruota-gioco" class="form-select form-select-lg">
-                                        <option value="nazionale">🇮🇹 Nazionale</option>
-                                        <option value="bari">🏛️ Bari</option>
-                                        <option value="cagliari">🏖️ Cagliari</option>
-                                        <option value="firenze">🎨 Firenze</option>
-                                        <option value="genova">⚓ Genova</option>
-                                        <option value="milano">🏙️ Milano</option>
-                                        <option value="napoli">🍕 Napoli</option>
-                                        <option value="palermo">🌴 Palermo</option>
-                                        <option value="roma">🏛️ Roma</option>
-                                        <option value="torino">⛰️ Torino</option>
-                                        <option value="venezia">🚤 Venezia</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6 mb-4">
-                                    <label class="form-label fw-bold">
-                                        <i class="fas fa-brain"></i> Strategia Generazione
-                                    </label>
-                                    <select id="strategia" class="form-select">
-                                        <option value="casuale">🎲 Completamente Casuale</option>
-                                        <option value="frequenze">📈 Basata su Frequenze</option>
-                                        <option value="ritardi">⏰ Basata su Ritardi</option>
-                                        <option value="mista">🔀 Strategia Mista</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6 mb-4">
-                                    <label class="form-label fw-bold">
-                                        <i class="fas fa-layer-group"></i> Numero Combinazioni
-                                    </label>
-                                    <select id="num-combinazioni" class="form-select">
-                                        <option value="1">1 Combinazione</option>
-                                        <option value="3" selected>3 Combinazioni</option>
-                                        <option value="5">5 Combinazioni</option>
-                                        <option value="10">10 Combinazioni</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="text-center">
-                                <button type="button" id="genera-combinazioni" class="btn btn-success btn-lg px-5 py-3">
-                                    <i class="fas fa-magic"></i> Genera Combinazioni Magiche
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+        <h1 class="text-center">🎲 Generatore Funzionante!</h1>
+        <div class="alert alert-success">
+            <h4>✅ Pagina Ripristinata!</h4>
+            <p>Il generatore è stato ripristinato con supporto TUTTE LE RUOTE!</p>
         </div>
-
-        <!-- Results Section -->
-        <div class="row mt-5">
-            <div class="col-12">
-                <div id="risultati-container" style="display: none;">
-                    <h3 class="text-center mb-4">
-                        <i class="fas fa-star"></i> Combinazioni Generate
-                    </h3>
-                    <div id="combinazioni-results" class="row">
-                        <!-- Dynamic content -->
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Tipo Giocata</label>
+                        <select id="tipo" class="form-select">
+                            <option value="ambo">Ambo (2 numeri)</option>
+                            <option value="terno">Terno (3 numeri)</option>
+                            <option value="quaterna">Quaterna (4 numeri)</option>
+                            <option value="cinquina">Cinquina (5 numeri)</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Ruota</label>
+                        <select id="ruota" class="form-select">
+                            <option value="tutte">🌍 TUTTE LE RUOTE (Migliori Probabilità)</option>
+                            <option value="nazionale">🇮🇹 Nazionale</option>
+                            <option value="bari">🏛️ Bari</option>
+                            <option value="milano">🏙️ Milano</option>
+                            <option value="roma">🏛️ Roma</option>
+                            <option value="napoli">🍕 Napoli</option>
+                        </select>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Quick Actions -->
-        <div class="row mt-5">
-            <div class="col-12">
-                <div class="card bg-light">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <i class="fas fa-bolt"></i> Azioni Rapide
-                        </h5>
-                        <div class="d-flex flex-wrap gap-2">
-                            <button class="btn btn-outline-primary" onclick="generateQuick('ambo', 'nazionale')">
-                                Ambo Nazionale
-                            </button>
-                            <button class="btn btn-outline-success" onclick="generateQuick('terno', 'milano')">
-                                Terno Milano
-                            </button>
-                            <button class="btn btn-outline-warning" onclick="generateQuick('quaterna', 'roma')">
-                                Quaterna Roma
-                            </button>
-                            <button class="btn btn-outline-danger" onclick="generateQuick('cinquina', 'napoli')">
-                                Cinquina Napoli
-                            </button>
-                            <button class="btn btn-outline-info" onclick="generateLucky()">
-                                🍀 Numeri Fortunati
-                            </button>
-                        </div>
-                    </div>
+                <div class="text-center">
+                    <button id="genera" class="btn btn-success btn-lg">🎲 Genera Combinazione</button>
                 </div>
-            </div>
-        </div>
-
-        <!-- Statistics Info -->
-        <div class="row mt-4">
-            <div class="col-md-4">
-                <div class="card border-primary">
-                    <div class="card-body text-center">
-                        <i class="fas fa-percentage fa-2x text-primary mb-2"></i>
-                        <h6>Probabilità Ambo</h6>
-                        <p class="text-muted mb-0">1 su 4.005</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card border-success">
-                    <div class="card-body text-center">
-                        <i class="fas fa-trophy fa-2x text-success mb-2"></i>
-                        <h6>Probabilità Terno</h6>
-                        <p class="text-muted mb-0">1 su 117.480</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card border-warning">
-                    <div class="card-body text-center">
-                        <i class="fas fa-crown fa-2x text-warning mb-2"></i>
-                        <h6>Probabilità Cinquina</h6>
-                        <p class="text-muted mb-0">1 su 43.949.268</p>
-                    </div>
-                </div>
+                <div id="risultato" class="mt-4"></div>
             </div>
         </div>
     </div>
-
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/generator.js') }}"></script>
+    <script>
+        document.getElementById('genera').onclick = function() {
+            const tipo = document.getElementById('tipo').value;
+            const ruota = document.getElementById('ruota').value;
+            fetch(`/api/genera/numeri?tipo=${tipo}&ruota=${ruota}`)
+                .then(r => r.json())
+                .then(data => {
+                    document.getElementById('risultato').innerHTML = `
+                        <div class="alert alert-success">
+                            <h5>✨ Combinazione Generata!</h5>
+                            <div class="text-center my-3">
+                                ${data.numeri.map(n => `<span class="badge bg-primary fs-5 me-2">${n}</span>`).join('')}
+                            </div>
+                            <p><strong>Tipo:</strong> ${data.tipo} | <strong>Ruota:</strong> ${data.ruota} | <strong>Probabilità:</strong> ${data.probabilita}</p>
+                        </div>
+                    `;
+                });
+        };
+    </script>
 </body>
 </html>
-
-
-

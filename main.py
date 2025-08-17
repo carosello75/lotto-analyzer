@@ -9,58 +9,28 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
+
+@app.route('/generator') 
+def generator():
+    return render_template('generator.html')
+
+@app.route('/stats')
+def stats():
+    return render_template('stats.html')
+
 @app.route('/api/health')
 def api_health():
-    return jsonify({'status': 'healthy', 'service': 'lotto-analyzer'})
+    return jsonify({'status': 'healthy'})
 
 @app.route('/api/estrazioni/ultima')
 def api_ultima_estrazione():
-    ruote = ['bari', 'cagliari', 'firenze', 'genova', 'milano', 
-             'napoli', 'palermo', 'roma', 'torino', 'venezia']
-    
-    estrazione = {
-        'concorso': 5024,
-        'data': datetime.now().strftime('%d/%m/%Y'),
-        'numeri': {}
-    }
-    
+    ruote = ['bari', 'cagliari', 'firenze', 'genova', 'milano', 'napoli', 'palermo', 'roma', 'torino', 'venezia']
+    estrazione = {'concorso': 5024, 'data': datetime.now().strftime('%d/%m/%Y'), 'numeri': {}}
     for ruota in ruote:
         estrazione['numeri'][ruota] = sorted([random.randint(1, 90) for _ in range(5)])
-    
-    return jsonify(estrazione)
-
-@app.route('/api/estrazioni/tutte-ruote')
-def api_tutte_ruote():
-    """Nuova API per tutte le ruote"""
-    ruote = ['bari', 'cagliari', 'firenze', 'genova', 'milano', 
-             'napoli', 'palermo', 'roma', 'torino', 'venezia']
-    
-    estrazione = {
-        'concorso': 5024,
-        'data': datetime.now().strftime('%d/%m/%Y'),
-        'tipo': 'tutte_ruote',
-        'numeri': {},
-        'statistiche_combinate': {}
-    }
-    
-    # Genera numeri per ogni ruota
-    tutti_numeri = []
-    for ruota in ruote:
-        numeri_ruota = sorted([random.randint(1, 90) for _ in range(5)])
-        estrazione['numeri'][ruota] = numeri_ruota
-        tutti_numeri.extend(numeri_ruota)
-    
-    # Calcola statistiche combinate
-    from collections import Counter
-    conteggio = Counter(tutti_numeri)
-    
-    estrazione['statistiche_combinate'] = {
-        'numeri_piu_frequenti': conteggio.most_common(10),
-        'total_estrazioni': len(tutti_numeri),
-        'numeri_unici': len(set(tutti_numeri)),
-        'media_uscite': sum(conteggio.values()) / len(conteggio) if conteggio else 0
-    }
-    
     return jsonify(estrazione)
 
 @app.route('/api/genera/numeri')
@@ -77,21 +47,12 @@ def api_genera_numeri():
     else:
         numeri = sorted([random.randint(1, 90) for _ in range(5)])
     
-    # Migliori probabilità per tutte le ruote
-    if ruota == 'tutte':
-        probabilita = "1 su 439,492 (10x migliore!)"
-        note = "Probabilità migliorate giocando su tutte le ruote"
-    else:
-        probabilita = "1 su 43,949,268"
-        note = f"Probabilità per singola ruota {ruota}"
-    
     return jsonify({
         'numeri': numeri,
         'tipo': tipo,
         'ruota': ruota,
         'generato': datetime.now().strftime('%d/%m/%Y %H:%M:%S'),
-        'probabilita': probabilita,
-        'note': note
+        'probabilita': '1 su 43.949.268' if ruota != 'tutte' else '1 su 439.492 (10x migliore!)'
     })
 
 if __name__ == '__main__':

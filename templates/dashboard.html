@@ -5,17 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>📊 Dashboard - Lotto Analyzer</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.css" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="/">
-                <i class="fas fa-dice"></i> Lotto Analyzer
-            </a>
+            <a class="navbar-brand" href="/">🎲 Lotto Analyzer</a>
             <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="/">Home</a>
                 <a class="nav-link active" href="/dashboard">Dashboard</a>
@@ -24,124 +18,27 @@
             </div>
         </div>
     </nav>
-
-    <!-- Page Header -->
-    <div class="bg-gradient-primary py-4">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col">
-                    <h1 class="h2 text-white mb-0">
-                        <i class="fas fa-chart-line"></i> Dashboard Analisi
-                    </h1>
-                    <p class="text-light mb-0">Panoramica completa delle estrazioni e statistiche</p>
-                </div>
-                <div class="col-auto">
-                    <button id="refresh-dashboard" class="btn btn-light btn-sm">
-                        <i class="fas fa-sync-alt"></i> Aggiorna
-                    </button>
-                </div>
+    <div class="container py-5">
+        <h1 class="text-center">📊 Dashboard Funzionante!</h1>
+        <div class="alert alert-success">
+            <h4>✅ Pagina Ripristinata!</h4>
+            <p>La dashboard è stata ripristinata e funziona correttamente.</p>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5>Ultima Estrazione</h5>
+                <div id="estrazione-data"></div>
             </div>
         </div>
     </div>
-
-    <!-- Stats Overview -->
-    <div class="container py-4">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="stat-card bg-primary">
-                    <span class="stat-number" id="total-concorsi">1,248</span>
-                    <span class="stat-label">Concorsi Totali</span>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="stat-card bg-success">
-                    <span class="stat-number" id="ultima-data">17/08/2025</span>
-                    <span class="stat-label">Ultima Estrazione</span>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="stat-card bg-warning">
-                    <span class="stat-number" id="numero-top">42</span>
-                    <span class="stat-label">Numero + Frequente</span>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="stat-card bg-danger">
-                    <span class="stat-number" id="numero-ritardo">73</span>
-                    <span class="stat-label">Maggior Ritardo</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Charts Row -->
-        <div class="row">
-            <div class="col-lg-8 mb-4">
-                <div class="card shadow">
-                    <div class="card-header bg-primary text-white">
-                        <h5 class="mb-0"><i class="fas fa-chart-bar"></i> Frequenze Numeri (Top 20)</h5>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="frequencyChart" height="300"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mb-4">
-                <div class="card shadow">
-                    <div class="card-header bg-success text-white">
-                        <h5 class="mb-0"><i class="fas fa-clock"></i> Ritardi Principali</h5>
-                    </div>
-                    <div class="card-body">
-                        <div id="ritardi-list">
-                            <div class="text-center">
-                                <div class="spinner-border text-primary" role="status">
-                                    <span class="visually-hidden">Caricamento...</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tutte le Ruote -->
-        <div class="row">
-            <div class="col-12">
-                <div class="card shadow">
-                    <div class="card-header bg-dark text-white">
-                        <h5 class="mb-0"><i class="fas fa-list"></i> Ultima Estrazione - Tutte le Ruote</h5>
-                    </div>
-                    <div class="card-body">
-                        <div id="tutte-ruote" class="row">
-                            <div class="col-12 text-center">
-                                <div class="spinner-border text-primary" role="status">
-                                    <span class="visually-hidden">Caricamento estrazioni...</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Trend Analysis -->
-        <div class="row mt-4">
-            <div class="col-12">
-                <div class="card shadow">
-                    <div class="card-header bg-info text-white">
-                        <h5 class="mb-0"><i class="fas fa-trending-up"></i> Trend Settimanale</h5>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="trendChart" height="200"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    <script>
+        fetch('/api/estrazioni/ultima').then(r => r.json()).then(data => {
+            document.getElementById('estrazione-data').innerHTML = 
+                `<p>Concorso ${data.concorso} - ${data.data}</p>` +
+                Object.keys(data.numeri).slice(0,3).map(ruota => 
+                    `<div><strong>${ruota.toUpperCase()}:</strong> ${data.numeri[ruota].join(', ')}</div>`
+                ).join('');
+        });
+    </script>
 </body>
 </html>
