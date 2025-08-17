@@ -1,4 +1,4 @@
-## 📝 FILE 7: Procfile (SOSTITUISCI TUTTO)
+
 "web: gunicorn app:app" | Out-File -FilePath "Procfile" -Encoding UTF8 -NoNewline
 
 ## 📝 FILE 8: .env (CREA PER SVILUPPO LOCALE)
