@@ -3,23 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎲 Lotto Analyzer - Dashboard</title>
+    <title>🎲 Lotto Analyzer - Sistema Analisi Avanzata</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="/">
                 <i class="fas fa-dice"></i> Lotto Analyzer
             </a>
-            <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="/">Home</a>
-                <a class="nav-link" href="/dashboard">Dashboard</a>
-                <a class="nav-link" href="/generator">Generatore</a>
-                <a class="nav-link" href="/stats">Statistiche</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link active" href="/">Home</a>
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                    <a class="nav-link" href="/generator">Generatore</a>
+                    <a class="nav-link" href="/stats">Statistiche</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -29,30 +34,33 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <h1 class="display-4 fw-bold text-white mb-4">
-                        🎲 Analisi Lotto Avanzata
-                    </h1>
-                    <p class="lead text-light mb-4">
-                        Sistema completo per analisi statistiche, generazione combinazioni e monitoraggio estrazioni del Lotto Italiano.
-                    </p>
-                    <div class="d-flex gap-3">
-                        <a href="/generator" class="btn btn-warning btn-lg">
-                            <i class="fas fa-magic"></i> Genera Numeri
-                        </a>
-                        <a href="/dashboard" class="btn btn-outline-light btn-lg">
-                            <i class="fas fa-chart-line"></i> Statistiche
-                        </a>
+                    <div class="fade-in">
+                        <h1 class="display-3 fw-bold text-white mb-4 sparkle">
+                            🎲 Analisi Lotto Avanzata
+                        </h1>
+                        <p class="lead text-light mb-4">
+                            Sistema completo per analisi statistiche, generazione combinazioni e monitoraggio estrazioni del Lotto Italiano con supporto per TUTTE LE RUOTE.
+                        </p>
+                        <div class="d-flex gap-3 flex-wrap">
+                            <a href="/generator" class="btn btn-warning btn-lg">
+                                <i class="fas fa-magic"></i> Genera Numeri
+                            </a>
+                            <a href="/dashboard" class="btn btn-outline-light btn-lg">
+                                <i class="fas fa-chart-line"></i> Dashboard
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="card bg-white shadow-lg">
-                        <div class="card-header bg-success text-white text-center">
-                            <h5><i class="fas fa-trophy"></i> Ultima Estrazione</h5>
-                        </div>
-                        <div class="card-body">
-                            <div id="ultima-estrazione" class="text-center">
-                                <div class="spinner-border text-primary" role="status">
-                                    <span class="visually-hidden">Caricamento...</span>
+                    <div class="slide-in">
+                        <div class="card shadow-lg">
+                            <div class="card-header bg-gradient-success text-white text-center">
+                                <h5><i class="fas fa-trophy"></i> Ultima Estrazione</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="ultima-estrazione" class="text-center">
+                                    <div class="loading"></div>
+                                    <p class="mt-2">Caricamento estrazioni...</p>
                                 </div>
                             </div>
                         </div>
@@ -67,32 +75,38 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4">
-                    <div class="card h-100 shadow-sm">
+                    <div class="card h-100">
                         <div class="card-body text-center">
-                            <i class="fas fa-chart-bar fa-3x text-primary mb-3"></i>
+                            <i class="fas fa-chart-bar fa-4x text-primary mb-3"></i>
                             <h5>Statistiche Avanzate</h5>
-                            <p class="text-muted">Analisi frequenze, ritardi e tendenze per tutte le ruote del lotto.</p>
-                            <a href="/stats" class="btn btn-outline-primary">Visualizza</a>
+                            <p class="text-muted">Analisi frequenze, ritardi e tendenze per tutte le ruote del lotto con supporto TUTTE LE RUOTE.</p>
+                            <a href="/stats" class="btn btn-outline-primary">
+                                <i class="fas fa-eye"></i> Visualizza
+                            </a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-4">
-                    <div class="card h-100 shadow-sm">
+                    <div class="card h-100">
                         <div class="card-body text-center">
-                            <i class="fas fa-random fa-3x text-success mb-3"></i>
+                            <i class="fas fa-random fa-4x text-success mb-3"></i>
                             <h5>Generatore Intelligente</h5>
-                            <p class="text-muted">Crea combinazioni per ambi, terni, quaterne e cinquine.</p>
-                            <a href="/generator" class="btn btn-outline-success">Genera</a>
+                            <p class="text-muted">Crea combinazioni per ambi, terni, quaterne e cinquine con probabilità migliorate.</p>
+                            <a href="/generator" class="btn btn-outline-success">
+                                <i class="fas fa-magic"></i> Genera
+                            </a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-4">
-                    <div class="card h-100 shadow-sm">
+                    <div class="card h-100">
                         <div class="card-body text-center">
-                            <i class="fas fa-history fa-3x text-warning mb-3"></i>
-                            <h5>Storico Estrazioni</h5>
-                            <p class="text-muted">Database completo con tutte le estrazioni storiche.</p>
-                            <a href="/dashboard" class="btn btn-outline-warning">Esplora</a>
+                            <i class="fas fa-history fa-4x text-warning mb-3"></i>
+                            <h5>Dashboard Completa</h5>
+                            <p class="text-muted">Monitoraggio real-time con grafici interattivi e analisi complete.</p>
+                            <a href="/dashboard" class="btn btn-outline-warning">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -100,19 +114,21 @@
         </div>
     </section>
 
-    <!-- Quick Generator -->
-    <section class="bg-light py-5">
+    <!-- Generatore Rapido -->
+    <section class="py-5" style="background: rgba(255,255,255,0.1);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                    <div class="card shadow">
-                        <div class="card-header bg-primary text-white text-center">
+                    <div class="card shadow-lg">
+                        <div class="card-header bg-gradient-primary text-white text-center">
                             <h4><i class="fas fa-dice-five"></i> Generatore Rapido</h4>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body page-container">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Tipo Giocata</label>
+                                    <label class="form-label fw-bold">
+                                        <i class="fas fa-list-ol"></i> Tipo Giocata
+                                    </label>
                                     <select id="tipo-giocata" class="form-select">
                                         <option value="ambo">Ambo (2 numeri)</option>
                                         <option value="terno">Terno (3 numeri)</option>
@@ -121,25 +137,28 @@
                                     </select>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Ruota</label>
+                                    <label class="form-label fw-bold">
+                                        <i class="fas fa-globe"></i> Ruota di Gioco
+                                    </label>
                                     <select id="ruota-scelta" class="form-select">
-                                        <option value="nazionale">Nazionale</option>
-                                        <option value="bari">Bari</option>
-                                        <option value="cagliari">Cagliari</option>
-                                        <option value="firenze">Firenze</option>
-                                        <option value="genova">Genova</option>
-                                        <option value="milano">Milano</option>
-                                        <option value="napoli">Napoli</option>
-                                        <option value="palermo">Palermo</option>
-                                        <option value="roma">Roma</option>
-                                        <option value="torino">Torino</option>
-                                        <option value="venezia">Venezia</option>
+                                        <option value="tutte">🌍 TUTTE LE RUOTE (Migliori Probabilità)</option>
+                                        <option value="nazionale">🇮🇹 Nazionale</option>
+                                        <option value="bari">🏛️ Bari</option>
+                                        <option value="cagliari">🏖️ Cagliari</option>
+                                        <option value="firenze">🎨 Firenze</option>
+                                        <option value="genova">⚓ Genova</option>
+                                        <option value="milano">🏙️ Milano</option>
+                                        <option value="napoli">🍕 Napoli</option>
+                                        <option value="palermo">🌴 Palermo</option>
+                                        <option value="roma">🏛️ Roma</option>
+                                        <option value="torino">⛰️ Torino</option>
+                                        <option value="venezia">🚤 Venezia</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="text-center">
                                 <button id="genera-numeri" class="btn btn-primary btn-lg">
-                                    <i class="fas fa-magic"></i> Genera Combinazione
+                                    <i class="fas fa-magic"></i> Genera Combinazione Magica
                                 </button>
                             </div>
                             <div id="risultato-generatore" class="mt-4"></div>
@@ -151,10 +170,27 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-light py-4">
+    <footer class="bg-dark text-light py-5">
         <div class="container text-center">
-            <p>&copy; 2025 Lotto Analyzer. Sistema di analisi statistica del Lotto Italiano.</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-dice"></i> Lotto Analyzer</h5>
+                    <p>Sistema completo per l'analisi statistica del Lotto Italiano</p>
+                </div>
+                <div class="col-md-6">
+                    <h6>Funzionalità</h6>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check text-success"></i> Tutte le ruote supportate</li>
+                        <li><i class="fas fa-check text-success"></i> Probabilità migliorate</li>
+                        <li><i class="fas fa-check text-success"></i> Grafici interattivi</li>
+                        <li><i class="fas fa-check text-success"></i> Design responsive</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
             <p class="mb-0">
+                &copy; 2025 Lotto Analyzer. Sistema di analisi statistica del Lotto Italiano.
+                <br>
                 <small class="text-muted">
                     ⚠️ Il gioco del lotto è basato sulla casualità. Questo sistema è puramente educativo e statistico.
                 </small>
@@ -165,8 +201,127 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    
+    <script>
+        // Homepage specific functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load ultima estrazione
+            loadUltimaEstrazione();
+            
+            // Genera numeri button
+            document.getElementById('genera-numeri').addEventListener('click', generaNumeriRapido);
+            
+            // Auto refresh ogni 30 secondi
+            setInterval(loadUltimaEstrazione, 30000);
+        });
+
+        async function loadUltimaEstrazione() {
+            try {
+                const response = await fetch('/api/estrazioni/ultima');
+                const data = await response.json();
+                displayUltimaEstrazione(data);
+            } catch (error) {
+                document.getElementById('ultima-estrazione').innerHTML = 
+                    '<div class="alert alert-warning">Errore caricamento estrazioni</div>';
+            }
+        }
+
+        function displayUltimaEstrazione(data) {
+            const container = document.getElementById('ultima-estrazione');
+            
+            let html = `
+                <div class="fade-in">
+                    <h6 class="text-muted mb-3">Concorso ${data.concorso} - ${data.data}</h6>
+                    <div class="row">
+            `;
+
+            // Mostra prime 5 ruote con numeri colorati
+            const ruoteTop = ['bari', 'milano', 'roma', 'napoli', 'venezia'];
+            ruoteTop.forEach(ruota => {
+                if (data.numeri[ruota]) {
+                    html += `
+                        <div class="col-12 mb-3">
+                            <div class="ruota-container">
+                                <div class="ruota-nome">${ruota.toUpperCase()}</div>
+                                <div class="text-center">
+                                    ${data.numeri[ruota].map((num, idx) => 
+                                        `<span class="numero-lotto ${idx === 0 ? 'gold' : idx === 1 ? 'silver' : idx === 2 ? 'bronze' : ''}">${num}</span>`
+                                    ).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            html += `
+                    </div>
+                    <div class="text-center mt-3">
+                        <small class="text-muted">
+                            <i class="fas fa-sync-alt"></i> Aggiornato automaticamente
+                        </small>
+                    </div>
+                </div>
+            `;
+
+            container.innerHTML = html;
+        }
+
+        async function generaNumeriRapido() {
+            const btn = document.getElementById('genera-numeri');
+            const tipo = document.getElementById('tipo-giocata').value;
+            const ruota = document.getElementById('ruota-scelta').value;
+            const container = document.getElementById('risultato-generatore');
+
+            // Loading state
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading"></span> Generando magia...';
+
+            try {
+                const response = await fetch(`/api/genera/numeri?tipo=${tipo}&ruota=${ruota}`);
+                const data = await response.json();
+                
+                const isAllWheels = ruota === 'tutte';
+                container.innerHTML = `
+                    <div class="alert ${isAllWheels ? 'alert-warning' : 'alert-success'} fade-in">
+                        <div class="text-center">
+                            <h5>
+                                <i class="fas fa-star"></i> Combinazione Generata!
+                                ${isAllWheels ? '<span class="badge bg-success ms-2">TUTTE LE RUOTE</span>' : ''}
+                            </h5>
+                            <div class="my-4">
+                                ${data.numeri.map((num, idx) => 
+                                    `<span class="numero-lotto ${idx === 0 ? 'gold' : idx === 1 ? 'silver' : ''}">${num}</span>`
+                                ).join('')}
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-md-4">
+                                    <strong>Tipo:</strong> ${data.tipo.toUpperCase()}
+                                </div>
+                                <div class="col-md-4">
+                                    <strong>Ruota:</strong> ${isAllWheels ? 'TUTTE LE RUOTE' : data.ruota.toUpperCase()}
+                                </div>
+                                <div class="col-md-4">
+                                    <strong>Probabilità:</strong> ${data.probabilita}
+                                </div>
+                            </div>
+                            <small class="text-muted d-block mt-3">
+                                Generato il ${data.generato}
+                            </small>
+                        </div>
+                    </div>
+                `;
+                
+                // Scroll to result
+                container.scrollIntoView({ behavior: 'smooth' });
+                
+            } catch (error) {
+                container.innerHTML = '<div class="alert alert-danger">Errore nella generazione</div>';
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-magic"></i> Genera Combinazione Magica';
+            }
+        }
+    </script>
 </body>
 </html>
-
-
-
