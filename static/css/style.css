@@ -20,7 +20,11 @@ body {
     min-height: 100vh;
 }
 
-p.text-muted{  color:#fff; }
+div.card-body text-center p.text-muted {
+
+    color:#fff;
+  
+}
 
 /* Hero Section */
 .hero-section {
