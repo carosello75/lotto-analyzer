@@ -20,6 +20,8 @@ body {
     min-height: 100vh;
 }
 
+p.text-muted{  color:#fff; }
+
 /* Hero Section */
 .hero-section {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
